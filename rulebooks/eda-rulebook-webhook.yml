@@ -12,6 +12,7 @@
     - name: EDA | Webhook | Run playbook to greet our webhook callers
       condition: event.payload.name == 'greeting'
       actions:
+        - debug:
         - run_job_template:
             name: "[EDA] Webhook playbook"
             organization: Default
@@ -20,5 +21,5 @@
                 greeting: "{{ event.payload.message }}"
         - set_fact:
             fact:
-              greeting: "{{ event.payload.message }}"
+              webhookgreeting: "{{ event.payload.message }}"
 
